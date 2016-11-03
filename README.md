@@ -2,6 +2,8 @@
 
 > A sample project built on Vue + Vuex
 
+<http://engineer.recruit-lifestyle.co.jp/techblog/2016-09-15-try-vue-flux/>
+
 ## Build Setup
 
 ``` bash
