@@ -1,8 +1,8 @@
 <template>
   <main class="mdl-laoyut__content">
     <div class="page-content">
-      <search></search>
-      <card v-for="n in 10"></card>
+      <search @input="searchGIFs"></search>
+      <card v-for="gif in gifs" :gif="gif" />
     </div>
   </main>
 </template>
@@ -11,10 +11,30 @@
 import Search from './Search'
 import Card from './Card'
 
+function getGIFs (query) {
+  const params = encodeURIComponent(query).replace(/%20/g, '+')
+  return fetch(`http://api.giphy.com/v1/gifs/search?q=${params}&api_key=dc6zaTOxFJmzC`)
+    .then(res => res.json())
+}
+
 export default {
   components: {
     Card,
     Search
+  },
+
+  data () {
+    return {
+      gifs: []
+    }
+  },
+
+  methods: {
+    searchGIFs (keyword) {
+      getGIFs(keyword).then(res => {
+        this.gifs = res.data
+      })
+    }
   }
 }
 </script>

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App'
+import 'whatwg-fetch'
 
 import 'material-design-lite/dist/material.min.css'
 

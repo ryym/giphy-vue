@@ -1,9 +1,24 @@
 <template>
   <div class="mdl-textfield mdl-js-textfield">
-    <input id="sample1" class="mdl-textfield__input" type="text">
+    <input
+      id="sample1"
+      class="mdl-textfield__input"
+      type="text"
+      @change="onChange"
+    >
     <i class="material-icons">search</i>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    onChange (event) {
+      this.$emit('input', event.target.value)
+    }
+  }
+}
+</script>
 
 <style scoped>
 .mdl-textfield {
