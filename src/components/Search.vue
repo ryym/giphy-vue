@@ -5,8 +5,9 @@
       class="mdl-textfield__input"
       type="text"
       @change="onChange"
+      @keyup.enter="search"
     >
-    <i @click="onClick" class="material-icons">search</i>
+    <i @click="search" class="material-icons">search</i>
   </div>
 </template>
 
@@ -16,7 +17,7 @@ export default {
     onChange (event) {
       this.$emit('input', event.target.value)
     },
-    onClick (event) {
+    search (event) {
       this.$emit('search')
     }
   }
