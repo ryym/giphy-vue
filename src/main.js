@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import App from './App'
 
+import 'material-design-lite/dist/material.min.css'
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
