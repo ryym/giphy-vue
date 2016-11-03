@@ -6,7 +6,7 @@
       type="text"
       @change="onChange"
     >
-    <i class="material-icons">search</i>
+    <i @click="onClick" class="material-icons">search</i>
   </div>
 </template>
 
@@ -15,6 +15,9 @@ export default {
   methods: {
     onChange (event) {
       this.$emit('input', event.target.value)
+    },
+    onClick (event) {
+      this.$emit('search')
     }
   }
 }
@@ -28,5 +31,9 @@ export default {
   width: 60%;
   display: flex;
   margin-bottom: 60px;
+}
+
+i {
+  cursor: pointer;
 }
 </style>

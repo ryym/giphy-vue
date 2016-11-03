@@ -1,21 +1,26 @@
 <template>
   <main class="mdl-laoyut__content">
     <div class="page-content">
-      <search @input="searchGIFs"></search>
+      <search
+        @input="CHANGE_KEYWORD"
+        @search="SEARCH"
+      />
       <card v-for="gif in gifs" :gif="gif" />
     </div>
   </main>
 </template>
 
 <script>
+import {
+  mapActions,
+  mapState
+} from 'vuex'
 import Search from './Search'
 import Card from './Card'
-
-function getGIFs (query) {
-  const params = encodeURIComponent(query).replace(/%20/g, '+')
-  return fetch(`http://api.giphy.com/v1/gifs/search?q=${params}&api_key=dc6zaTOxFJmzC`)
-    .then(res => res.json())
-}
+import {
+  CHANGE_KEYWORD,
+  SEARCH
+} from '../vuex/action-types'
 
 export default {
   components: {
@@ -23,18 +28,17 @@ export default {
     Search
   },
 
-  data () {
-    return {
-      gifs: []
-    }
+  computed: {
+    ...mapState([
+      'gifs'
+    ])
   },
 
   methods: {
-    searchGIFs (keyword) {
-      getGIFs(keyword).then(res => {
-        this.gifs = res.data
-      })
-    }
+    ...mapActions([
+      CHANGE_KEYWORD,
+      SEARCH
+    ])
   }
 }
 </script>
